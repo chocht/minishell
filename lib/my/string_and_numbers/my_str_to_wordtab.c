@@ -1,0 +1,83 @@
+/*
+** my_str_to_wordtab.c for lib in /home/chauch_p/librairie/lib/my
+** 
+** Made by Pierre Chauchoy
+** Login   <chauch_p@epitech.net>
+** 
+** Started on  Tue May 17 12:51:51 2016 Pierre Chauchoy
+** Last update Tue May 24 17:49:27 2016 Pierre Chauchoy
+*/
+
+#include <stdlib.h>
+#include "my.h"
+
+int		size_height(char *s, char *letters)
+{
+  int		i;
+  int		height;
+
+  i = 0;
+  height = 0;
+  while (my_is_in_str(s[i], letters) == 0)
+    i = i + 1;
+  while (s[i])
+    {
+      while (s[i] && my_is_in_str(s[i], letters))
+	i = i + 1;
+      height++;
+      while (my_is_in_str(s[i], letters) == 0)
+	i = i + 1;
+    }
+  return (height);
+}
+
+int		size_width(char *s, int *i, char *letters)
+{
+  int		width;
+  int		x;
+
+  width = 0;
+  while (my_is_in_str(s[*i], letters) == 0)
+    *i = *i + 1;
+  x = *i - 1;
+  while (s[++x] && my_is_in_str(s[x], letters))
+    width++;
+  return (width);
+}
+
+int		fill_lines_of_tab(char **tab, char *s, int height,
+				  char *letters)
+{
+  int		x;
+  int		y;
+  int		i;
+  int		width;
+
+  y = -1;
+  i = 0;
+  while (++y < height)
+    {
+      x = -1;
+      width = size_width(s, &i, letters);
+      if (!(tab[y] = xmalloc(sizeof(char) * (width + 1))))
+	return (1);
+      while (++x < width)
+	tab[y][x] = s[i++];
+      tab[y][x] = '\0';
+    }
+  tab[y] = NULL;
+  return (0);
+}
+
+char		**my_str_to_wordtab(char *s, char *letters)
+{
+  char		**tab;
+  int		height;
+
+  height = size_height(s, letters);
+  if (!(tab = xmalloc(sizeof(char*) * (height + 1))))
+    return (NULL);
+  if (fill_lines_of_tab(tab, s, height, letters))
+    return (NULL);
+  return (tab);
+}
