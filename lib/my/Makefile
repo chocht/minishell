@@ -5,7 +5,7 @@
 ## Login   <chauch_p@epitech.net>
 ## 
 ## Started on  Mon Feb 15 14:15:38 2016 Pierre Chauchoy
-## Last update Tue May 24 11:19:50 2016 Pierre Chauchoy
+## Last update Thu Jun  2 11:49:59 2016 Pierre Chauchoy
 ##
 
 # ---------- Directories ----------
@@ -42,7 +42,6 @@ SRCS		= $(EXIT_FREE_MAL)/at_exit.c \
 		  $(PRINTF)/my_printf_func_3.c \
 		  $(PRINTF)/my_printf_func_4.c \
 		  $(PRINTF)/my_printf_func_5.c \
-		  $(STR_AND_NBERS)/my_free_wordtab.c \
 		  $(STR_AND_NBERS)/my_getnbr_base.c \
 		  $(STR_AND_NBERS)/my_getnbr.c \
 		  $(STR_AND_NBERS)/my_getnbr_float.c \
@@ -54,6 +53,7 @@ SRCS		= $(EXIT_FREE_MAL)/at_exit.c \
 		  $(STR_AND_NBERS)/my_putchar.c \
 		  $(STR_AND_NBERS)/my_putnbr_base.c \
 		  $(STR_AND_NBERS)/my_put_nbr.c \
+		  $(STR_AND_NBERS)/my_put_nbr_float.c \
 		  $(STR_AND_NBERS)/my_putstr.c \
 		  $(STR_AND_NBERS)/my_revstr.c \
 		  $(STR_AND_NBERS)/my_show_wordtab.c \
@@ -69,6 +69,7 @@ SRCS		= $(EXIT_FREE_MAL)/at_exit.c \
 		  $(STR_AND_NBERS)/my_strncmp.c \
 		  $(STR_AND_NBERS)/my_strstr.c \
 		  $(STR_AND_NBERS)/my_str_to_wordtab.c \
+		  $(STR_AND_NBERS)/my_str_to_wordtab2.c \
 		  $(STR_AND_NBERS)/my_wordtabcat_string.c \
 		  $(STR_AND_NBERS)/my_wordtab_dup.c
 

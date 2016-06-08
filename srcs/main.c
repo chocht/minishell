@@ -5,7 +5,7 @@
 ** Login   <chauch_p@epitech.net>
 ** 
 ** Started on  Tue May 24 11:01:55 2016 Pierre Chauchoy
-** Last update Tue May 24 12:49:39 2016 Pierre Chauchoy
+** Last update Sat Jun  4 17:40:56 2016 Pierre Chauchoy
 */
 
 #include <signal.h>
@@ -18,6 +18,8 @@ void		sig(int sig)
 
 int		main(int argc, char **argv, char **env)
 {
+  if (!env)
+    return (at_exit_1(ERR_ENV));
   if (signal(SIGINT, sig) == SIG_ERR)
     return (at_exit_1(ERR_SIG));
   if (minishell(env))

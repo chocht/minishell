@@ -5,7 +5,7 @@
 ** Login   <chauch_p@epitech.net>
 ** 
 ** Started on  Tue May 17 12:48:14 2016 Pierre Chauchoy
-** Last update Tue May 17 13:31:35 2016 Pierre Chauchoy
+** Last update Thu May 26 18:16:49 2016 Pierre Chauchoy
 */
 
 #include "my.h"
@@ -24,7 +24,7 @@ int		my_getnbr(char *str)
       nb = nb + ((str[i] - 48) * j);
       j = j * 10;
       i = i - 1;
-      while (str[i] == MINUS)
+      while (str[i] == LIB_MINUS)
 	{
 	  nb = -nb;
 	  i = i - 1;

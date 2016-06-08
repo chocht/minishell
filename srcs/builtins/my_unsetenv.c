@@ -5,7 +5,7 @@
 ** Login   <chauch_p@epitech.net>
 ** 
 ** Started on  Tue May 24 19:25:17 2016 Pierre Chauchoy
-** Last update Tue May 24 19:29:48 2016 Pierre Chauchoy
+** Last update Fri Jun  3 15:09:00 2016 Pierre Chauchoy
 */
 
 #include <stdlib.h>
@@ -37,7 +37,7 @@ static char		**remove_env(char **env_to_copy, char *s)
       if (!(env[j++] = my_strdup(env_to_copy[i])))
 	return (NULL);
   env[j] = NULL;
-  my_free_wordtab(env_to_copy);
+  my_free_wordtab(&env_to_copy);
   return (env);
 }
 
@@ -59,5 +59,6 @@ int			my_unsetenv(t_mysh *mysh)
 	if (reload_path(mysh))
 	  return (1);
     }
+  mysh->value.last_command = 0;
   return (0);
 }

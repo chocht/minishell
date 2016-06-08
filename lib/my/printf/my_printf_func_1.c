@@ -5,26 +5,11 @@
 ** Login   <chauch_p@epitech.net>
 ** 
 ** Started on  Tue May 17 12:53:01 2016 Pierre Chauchoy
-** Last update Tue May 17 13:30:29 2016 Pierre Chauchoy
+** Last update Thu May 26 18:38:35 2016 Pierre Chauchoy
 */
 
+#include <stdlib.h>
 #include "my.h"
-
-void		fill_display(t_disp_printf *display)
-{
-  display[0] = &printf_dec;
-  display[1] = &printf_dec;
-  display[2] = &printf_oct;
-  display[3] = &printf_uint;
-  display[4] = &printf_uhex;
-  display[5] = &printf_uhex;
-  display[6] = &printf_char;
-  display[7] = &printf_str;
-  display[8] = &printf_str_np;
-  display[9] = &printf_ptr;
-  display[10] = &printf_bin;
-  display[11] = &printf_tab;
-}
 
 void		fill_printf(const char *s, t_printf *printf)
 {
@@ -32,6 +17,20 @@ void		fill_printf(const char *s, t_printf *printf)
   printf->p = -1;
   printf->s = s;
   printf->len = 0;
+  printf->display[0] = &printf_dec;
+  printf->display[1] = &printf_dec;
+  printf->display[2] = &printf_oct;
+  printf->display[3] = &printf_uint;
+  printf->display[4] = &printf_uhex;
+  printf->display[5] = &printf_uhex;
+  printf->display[6] = &printf_char;
+  printf->display[7] = &printf_str;
+  printf->display[8] = &printf_str_np;
+  printf->display[9] = &printf_ptr;
+  printf->display[10] = &printf_bin;
+  printf->display[11] = &printf_tab;
+  printf->display[12] = &printf_float;
+  printf->display[13] = NULL;
 }
 
 void		printf_dec(t_printf *printf)
@@ -47,4 +46,9 @@ void		printf_oct(t_printf *printf)
 void		printf_uint(t_printf *printf)
 {
   my_put_unsigned_nbr_printf(va_arg(printf->ap, unsigned int), 10, printf);
+}
+
+void		printf_uhex(t_printf *printf)
+{
+  my_put_unsigned_nbr_printf(va_arg(printf->ap, unsigned int), 16, printf);
 }

@@ -5,42 +5,29 @@
 ** Login   <chauch_p@epitech.net>
 ** 
 ** Started on  Tue May 24 11:02:28 2016 Pierre Chauchoy
-** Last update Tue May 24 19:36:46 2016 Pierre Chauchoy
+** Last update Tue Jun  7 10:59:47 2016 Pierre Chauchoy
 */
 
-#include <stdlib.h>
 #include "mysh.h"
 #include "my.h"
 
-int		go_parse_this(t_mysh *mysh, char *s)
-{
-  int		i;
+/*
+** JOLI PROMPT:
+** if (prompt())
+**   return (at_exit_mysh_err(ERR_GETCWD, mysh));
+*/
 
-  if (!(mysh->separator = my_str_to_wordtab(s, POINT_COMA)))
-    return (at_exit_mysh_1(mysh));
-  i = -1;
-  while (mysh->separator[++i])
-    {
-      if (!(mysh->command = my_str_to_wordtab(mysh->separator[i], SEPARATION)))
-	return (at_exit_mysh_1(mysh));
-      if (program(mysh))
-	return (1);
-      my_free_wordtab(mysh->command);
-      mysh->command = NULL;
-    }
-  my_free_wordtab(mysh->separator);
-  mysh->separator = NULL;
-  return (0);
-}
-
-int		loop_mysh(t_mysh *mysh)
+static int	loop_mysh(t_mysh *mysh)
 {
   while (42)
     {
-      if (prompt(mysh->env))
-	return (at_exit_1("no pwd"));
+      if (prompt())
+	return (at_exit_mysh_err(ERR_GETCWD, mysh));
       if (!(mysh->s = get_next_line(0)))
-	return (at_exit_mysh_msg(EXIT, mysh));
+	{
+	  at_exit_mysh_1(mysh);
+	  return (mysh->value.last_command);
+	}
       if (go_parse_this(mysh, mysh->s))
 	return (1);
       if (mysh->s)

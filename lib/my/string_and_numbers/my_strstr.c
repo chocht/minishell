@@ -5,7 +5,7 @@
 ** Login   <chauch_p@epitech.net>
 ** 
 ** Started on  Tue May 17 12:50:35 2016 Pierre Chauchoy
-** Last update Tue May 24 11:16:03 2016 Pierre Chauchoy
+** Last update Thu May 26 18:21:31 2016 Pierre Chauchoy
 */
 
 #include <stdarg.h>
@@ -44,7 +44,7 @@ char		*my_strstr(char *s, ...)
   va_start(ap, s);
   while (++i < my_strlen(s))
     {
-      if (s[i] == PERCENT)
+      if (s[i] == LIB_PERCENT)
 	{
 	  if (s[++i] == 's')
 	    if (!(dest = my_strcat_word(dest, va_arg(ap, char*))))

@@ -5,7 +5,7 @@
 ** Login   <chauch_p@epitech.net>
 ** 
 ** Started on  Tue May 17 12:53:25 2016 Pierre Chauchoy
-** Last update Tue May 24 11:16:31 2016 Pierre Chauchoy
+** Last update Thu May 26 18:21:58 2016 Pierre Chauchoy
 */
 
 #include <unistd.h>
@@ -48,7 +48,7 @@ char		*get_next_line(const int fd)
 	  free(line);
 	  return (NULL);
 	}
-      if (len == 0 || rd == BACK_N)
+      if (len == 0 || rd == LIB_BACK_N)
 	return (line);
       if (!(line = my_strcat_read(line, rd)))
 	return (NULL);

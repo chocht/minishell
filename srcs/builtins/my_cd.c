@@ -5,7 +5,7 @@
 ** Login   <chauch_p@epitech.net>
 ** 
 ** Started on  Tue May 24 18:55:35 2016 Pierre Chauchoy
-** Last update Tue May 24 19:31:14 2016 Pierre Chauchoy
+** Last update Sun Jun  5 22:51:05 2016 Pierre Chauchoy
 */
 
 #include <sys/types.h>
@@ -15,13 +15,19 @@
 #include "mysh.h"
 #include "my.h"
 
-int			change_dir_or_error(char *s)
+static int		change_dir_or_error(char *s)
 {
   struct stat		sb;
 
   if (stat(s, &sb) == -1)
     {
       my_fprintf(2, "%s: %s.\n", s, ERR_NOTHING);
+      return (1);
+    }
+  if (!(sb.st_mode & S_IRUSR) || !(sb.st_mode & S_IRGRP) ||
+      !(sb.st_mode & S_IROTH))
+    {
+      my_fprintf(2, "%s: %s.\n", s, ERR_PERM);
       return (1);
     }
   if (chdir(s) == -1)
@@ -32,15 +38,15 @@ int			change_dir_or_error(char *s)
   return (0);
 }
 
-int		        update_pwd_in_path(t_mysh *mysh, char *dir)
+static int	        update_pwd_in_path(t_mysh *mysh, char *dir)
 {
   char			*line;
 
   if (!(line = my_strstr("setenv %s %s", "PWD", dir)))
     return (1);
-  my_free_wordtab(mysh->command);
+  my_free_wordtab(&mysh->command);
   mysh->command = NULL;
-  if (!(mysh->command = my_str_to_wordtab(line, SEPARATION)))
+  if (!(mysh->command = my_str_to_wordtab(line, SEP_CMD)))
     return (at_exit_free(&line));
   my_free_str(&line);
   if (my_setenv(mysh))
@@ -48,7 +54,7 @@ int		        update_pwd_in_path(t_mysh *mysh, char *dir)
   return (0);
 }
 
-int		        update_old_and_cur_dir(t_mysh *mysh, char *s)
+int			update_old_and_cur_dir(t_mysh *mysh, char *s)
 {
   char			dir[LEN_GETCWD];
 
@@ -69,6 +75,7 @@ int		        update_old_and_cur_dir(t_mysh *mysh, char *s)
   my_printf("%s %s\n", MSG_DIR, dir);
   if (update_pwd_in_path(mysh, dir))
     return (1);
+  mysh->value.last_command = 0;
   return (0);
 }
 

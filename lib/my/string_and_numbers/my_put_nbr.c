@@ -5,7 +5,7 @@
 ** Login   <chauch_p@epitech.net>
 ** 
 ** Started on  Tue May 17 12:48:40 2016 Pierre Chauchoy
-** Last update Tue May 17 13:31:56 2016 Pierre Chauchoy
+** Last update Thu May 26 18:19:25 2016 Pierre Chauchoy
 */
 
 #include "my.h"
@@ -17,7 +17,7 @@ void		my_put_nbr(int nb)
   l = 0;
   if (nb < 0)
     {
-      my_putchar(MINUS);
+      my_putchar(LIB_MINUS);
       if (nb == -2147483648)
 	{
 	  nb = -2147483647;

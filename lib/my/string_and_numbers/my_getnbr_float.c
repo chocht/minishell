@@ -5,7 +5,7 @@
 ** Login   <chauch_p@epitech.net>
 ** 
 ** Started on  Tue May 17 12:48:17 2016 Pierre Chauchoy
-** Last update Tue May 17 13:31:40 2016 Pierre Chauchoy
+** Last update Thu May 26 18:19:08 2016 Pierre Chauchoy
 */
 
 #include "my.h"
@@ -23,23 +23,23 @@ void		my_getnbr_f_dec(char *s, int i, double *nb)
     }
 }
 
-double		my_getnbr_f(char *s)
+double		my_getnbr_float(char *s)
 {
   double	nb;
   int		i;
 
   nb = 0;
   i = 0;
-  if (s[0] == MINUS)
+  if (s[0] == LIB_MINUS)
     i++;
-  while (s[i] && s[i] != DOT)
+  while (s[i] && s[i] != LIB_DOT)
     {
       nb = nb * 10 + (s[i] - 48);
       i++;
     }
-  if (s[i] == DOT)
+  if (s[i] == LIB_DOT)
     my_getnbr_f_dec(s, ++i, &nb);
-  if (s[0] == MINUS)
+  if (s[0] == LIB_MINUS)
     return (-nb);
   return (nb);
 }

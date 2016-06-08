@@ -1,38 +1,64 @@
-##
 ## Makefile for minishell in /home/chauch_p/Repositories/other/minishell
 ## 
 ## Made by Pierre Chauchoy
 ## Login   <chauch_p@epitech.net>
 ## 
 ## Started on  Tue May 24 11:01:58 2016 Pierre Chauchoy
-## Last update Tue May 24 19:44:21 2016 Pierre Chauchoy
+## Last update Wed Jun  8 12:19:18 2016 Julien Andreani
 ##
 
 # ---------- Directories ----------
 
 DIR		= srcs
 
+BUILTINS	= $(DIR)/builtins
+
+REDIRECTIONS	= $(DIR)/redirections
+
+SEPARATIONS	= $(DIR)/separations
+
+LIST		= $(DIR)/list
+
 # ---------- Names ----------
 
-NAME		= mysh
+NAME		= 42sh
 
 # ---------- Sources ----------
 
 SRCS		= $(DIR)/main.c \
 		  $(DIR)/init_mysh.c \
 		  $(DIR)/minishell.c \
+		  $(DIR)/minishell2.c \
+		  $(DIR)/minishell3.c \
 		  $(DIR)/program.c \
 		  $(DIR)/at_exit_mysh.c \
 		  $(DIR)/at_exit_perso.c \
 		  $(DIR)/reload_path.c \
 		  $(DIR)/find_env.c \
 		  $(DIR)/exec_prgm.c \
+		  $(DIR)/my_spipe.c \
+		  $(DIR)/my_mpipe.c \
 		  $(DIR)/prompt.c \
-		  $(DIR)/my_cd.c \
-		  $(DIR)/my_env.c \
-		  $(DIR)/my_setenv.c \
-		  $(DIR)/my_unsetenv.c \
-		  $(DIR)/my_exit.c \
+		  $(DIR)/organize_between.c \
+		  $(BUILTINS)/my_cd.c \
+		  $(BUILTINS)/my_env.c \
+		  $(BUILTINS)/my_setenv.c \
+		  $(BUILTINS)/my_unsetenv.c \
+		  $(BUILTINS)/my_exit.c \
+		  $(BUILTINS)/my_echo.c \
+		  $(BUILTINS)/my_echo2.c \
+		  $(BUILTINS)/my_echo3.c \
+		  $(BUILTINS)/my_echo4.c \
+		  $(SEPARATIONS)/my_semicolon.c \
+		  $(SEPARATIONS)/my_db_amp.c \
+		  $(SEPARATIONS)/my_db_pipe.c \
+		  $(SEPARATIONS)/my_pipe.c \
+		  $(REDIRECTIONS)/my_leftrd.c \
+		  $(REDIRECTIONS)/my_db_leftrd.c \
+		  $(REDIRECTIONS)/my_rightrd.c \
+		  $(REDIRECTIONS)/my_db_rightrd.c \
+		  $(REDIRECTIONS)/open_file.c \
+		  $(LIST)/list.c
 		  # ENLEVER -G MAKEFILE
 
 # ---------- Objects ----------
@@ -49,7 +75,7 @@ RED		= "\033[1;31m"
 
 # ---------- Other ----------
 
-CC		= gcc -g
+CC		= gcc
 
 RM		= rm -f
 

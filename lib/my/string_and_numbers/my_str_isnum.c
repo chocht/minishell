@@ -5,7 +5,7 @@
 ** Login   <chauch_p@epitech.net>
 ** 
 ** Started on  Tue May 17 12:49:25 2016 Pierre Chauchoy
-** Last update Tue May 17 13:32:42 2016 Pierre Chauchoy
+** Last update Thu May 26 18:19:52 2016 Pierre Chauchoy
 */
 
 #include "my.h"
@@ -15,7 +15,7 @@ int		my_str_isnum(char *s)
   int		i;
 
   i = 0;
-  if (s[i] == MINUS)
+  if (s[i] == LIB_MINUS)
     i = i + 1;
   if (!s[i])
     return (1);

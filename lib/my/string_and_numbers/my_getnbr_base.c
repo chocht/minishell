@@ -5,7 +5,7 @@
 ** Login   <chauch_p@epitech.net>
 ** 
 ** Started on  Tue May 17 12:48:10 2016 Pierre Chauchoy
-** Last update Tue May 17 13:31:32 2016 Pierre Chauchoy
+** Last update Thu May 26 18:16:43 2016 Pierre Chauchoy
 */
 
 #include "my.h"
@@ -35,7 +35,7 @@ int		my_getnbr_base(char *str, char *base)
   dec = 1;
   while (--i >= 0)
     {
-      if (str[i] == MINUS)
+      if (str[i] == LIB_MINUS)
 	return (-nb);
       if ((pos = pos_in_base(base, str[i])) == -1)
 	return (-1);

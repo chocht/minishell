@@ -5,7 +5,7 @@
 ** Login   <chauch_p@epitech.net>
 ** 
 ** Started on  Tue May 24 18:55:30 2016 Pierre Chauchoy
-** Last update Tue May 24 19:30:28 2016 Pierre Chauchoy
+** Last update Fri Jun  3 15:08:38 2016 Pierre Chauchoy
 */
 
 #include <stdlib.h>
@@ -45,11 +45,11 @@ static int		add_env(t_mysh *mysh)
     return (1);
   if (!(tmp = my_wordtab_dup(mysh->env)))
     return (at_exit_free(&add));
-  my_free_wordtab(mysh->env);
+  my_free_wordtab(&mysh->env);
   mysh->env = NULL;
   if (!(mysh->env = my_wordtabcat_string(tmp, add)))
     return (at_exit_free(&add));
-  my_free_wordtab(tmp);
+  my_free_wordtab(&tmp);
   tmp = NULL;
   my_free_str(&add);
   return (0);
@@ -82,11 +82,10 @@ static int		my_setenv_line(t_mysh *mysh)
 int			my_setenv(t_mysh *mysh)
 {
   if (my_len_wordtab(mysh->command) == 1)
-    {
-      my_show_wordtab(mysh->env);
-      return (0);
-    }
-  if (my_setenv_line(mysh))
-    return (1);
+    my_show_wordtab(mysh->env);
+  else
+    if (my_setenv_line(mysh))
+      return (1);
+  mysh->value.last_command = 0;
   return (0);
 }

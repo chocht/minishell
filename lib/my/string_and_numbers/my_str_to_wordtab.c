@@ -5,47 +5,47 @@
 ** Login   <chauch_p@epitech.net>
 ** 
 ** Started on  Tue May 17 12:51:51 2016 Pierre Chauchoy
-** Last update Tue May 24 17:49:27 2016 Pierre Chauchoy
+** Last update Thu Jun  2 11:43:56 2016 Pierre Chauchoy
 */
 
 #include <stdlib.h>
 #include "my.h"
 
-int		size_height(char *s, char *letters)
+static int	size_height(char *s, char *letters)
 {
   int		i;
   int		height;
 
   i = 0;
   height = 0;
-  while (my_is_in_str(s[i], letters) == 0)
+  while (s[i] && my_is_in_str(s[i], letters) == 0)
     i = i + 1;
   while (s[i])
     {
-      while (s[i] && my_is_in_str(s[i], letters))
+      while (s[i] && my_is_in_str(s[i], letters) == 1)
 	i = i + 1;
       height++;
-      while (my_is_in_str(s[i], letters) == 0)
+      while (s[i] && my_is_in_str(s[i], letters) == 0)
 	i = i + 1;
     }
   return (height);
 }
 
-int		size_width(char *s, int *i, char *letters)
+static int	size_width(char *s, int *i, char *letters)
 {
   int		width;
   int		x;
 
   width = 0;
-  while (my_is_in_str(s[*i], letters) == 0)
+  while (s[*i] && my_is_in_str(s[*i], letters) == 0)
     *i = *i + 1;
   x = *i - 1;
-  while (s[++x] && my_is_in_str(s[x], letters))
+  while (s[++x] && my_is_in_str(s[x], letters) == 1)
     width++;
   return (width);
 }
 
-int		fill_lines_of_tab(char **tab, char *s, int height,
+static int	fill_lines_of_tab(char **tab, char *s, int height,
 				  char *letters)
 {
   int		x;

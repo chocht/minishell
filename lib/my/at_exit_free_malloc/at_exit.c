@@ -5,7 +5,7 @@
 ** Login   <chauch_p@epitech.net>
 ** 
 ** Started on  Tue May 17 17:03:40 2016 Pierre Chauchoy
-** Last update Tue May 17 17:07:36 2016 Pierre Chauchoy
+** Last update Wed May 25 20:01:41 2016 Pierre Chauchoy
 */
 
 #include <stdlib.h>
@@ -28,18 +28,16 @@ void		*at_exit_null(char *msg)
   return (NULL);
 }
 
-int		at_exit_free_1(char *msg, char *s)
+int		at_exit_free_1(char *msg, char **s)
 {
-  if (s)
-    my_free_str(&s);
+  my_free_str(s);
   my_fprintf(2, "Error -> %s.\n", msg);
   return (1);
 }
 
-void		*at_exit_free_null(char *msg, char *s)
+void		*at_exit_free_null(char *msg, char **s)
 {
-  if (s)
-    my_free_str(&s);
+  my_free_str(s);
   my_fprintf(2, "Error -> %s.\n", msg);
   return (NULL);
 }

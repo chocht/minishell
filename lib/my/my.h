@@ -1,11 +1,11 @@
 /*
-** my.h<2> for lib in /home/chauch_p/librairie/samples
+** my.h for lib in /home/chauch_p/librairie/samples/my
 ** 
 ** Made by Pierre Chauchoy
 ** Login   <chauch_p@epitech.net>
 ** 
-** Started on  Fri May 20 14:29:33 2016 Pierre Chauchoy
-** Last update Tue May 24 11:30:46 2016 Pierre Chauchoy
+** Started on  Thu Jun  2 11:49:49 2016 Pierre Chauchoy
+** Last update Thu Jun  2 11:49:49 2016 Pierre Chauchoy
 */
 
 #ifndef MY_H_
@@ -13,13 +13,15 @@
 
 # include		<stdarg.h>
 
-# define SPACE		' '
-# define TAB		'\t'
-# define MINUS		'-'
-# define DOT		'.'
-# define PLUS		'+'
-# define PERCENT	'%'
-# define BACK_N		'\n'
+# define LIB_SPACE	' '
+# define LIB_ZERO	'0'
+# define LIB_TAB	'\t'
+# define LIB_MINUS	'-'
+# define LIB_DOT	'.'
+# define LIB_PLUS	'+'
+# define LIB_PERCENT	'%'
+# define LIB_BACK_N	'\n'
+# define LIB_FLOAT_PREC	7
 
 /*
 ** string and numbers
@@ -30,15 +32,16 @@ int			my_putstr(char*);
 int			my_strlen(char*);
 void			my_put_nbr(int);
 void			my_putnbr_base(int, int);
+void			my_put_nbr_float(double);
 int			my_getnbr(char*);
 int			my_getnbr_base(char*, char*);
-double			my_getnbr_f(char*);
+double			my_getnbr_float(char*);
 int			my_power_rec(int, int);
 
 char			**my_str_to_wordtab(char*, char*);
+char			**my_str_to_wordtab2(char*, char*);
 int			my_len_wordtab(char**);
 void			my_show_wordtab(char**);
-void			my_free_wordtab(char**);
 char			**my_wordtab_dup(char**);
 char			**my_wordtabcat_string(char**, char*);
 
@@ -65,8 +68,8 @@ int			my_is_in_inttab(int, int*, int);
 #ifndef MY_PRINTF_H_
 # define MY_PRINTF_H_
 
-# define PRINTF_NB_LET	12
-# define PRINTF_LETTERS	"diouxXcsSpbt"
+# define PRINTF_NB_LET	14
+# define PRINTF_LETTERS	"diouxXcsSpbtf"
 
 typedef struct		s_printf
 {
@@ -78,9 +81,8 @@ typedef struct		s_printf
   int			len;
   char			*dest;
   int			sprintf;
+  void			(*display[PRINTF_NB_LET + 1])(struct s_printf*);
 }			t_printf;
-
-typedef void		(*t_disp_printf)(t_printf*);
 
 int			my_printf(const char*, ...);
 int			my_fprintf(int, const char*, ...);
@@ -96,6 +98,7 @@ void			printf_str_np(t_printf*);
 void			printf_ptr(t_printf*);
 void			printf_bin(t_printf*);
 void			printf_tab(t_printf*);
+void			printf_float(t_printf*);
 
 #endif /* !MY_PRINTF_H_ */
 
@@ -104,12 +107,15 @@ void			printf_tab(t_printf*);
 */
 
 void			*xmalloc(int);
+
 void			my_free_str(char**);
+void			my_free_wordtab(char***);
+
 int			at_exit_m1(char*);
 int			at_exit_1(char*);
 void			*at_exit_null(char*);
-int			at_exit_free_1(char*, char*);
-void			*at_exit_free_null(char*, char*);
+int			at_exit_free_1(char*, char **str);
+void			*at_exit_free_null(char*, char **str);
 
 /*
 ** get_next_line
